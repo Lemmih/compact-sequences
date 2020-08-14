@@ -35,9 +35,10 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cabal v2-update
+        cabal v2-update || cabal v2-update
+        cabal v2-build --only-dependencies --enable-tests --enable-benchmarks || \
         cabal v2-build --only-dependencies --enable-tests --enable-benchmarks
     - name: Build
-      run: cabal v2-build
+      run: cabal v2-build || cabal v2-build
     - name: Test
       run: cabal v2-test
