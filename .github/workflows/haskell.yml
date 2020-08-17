@@ -44,4 +44,15 @@ jobs:
     - name: Build
       run: cabal v2-build || cabal v2-build
     - name: Test
-      run: cabal v2-test
+      run: |
+        # baseline:
+        cabal v2-test
+
+        # test lots of cases:
+        cabal v2-test --test-options="--quickcheck-tests=10000"
+
+        # test large cases:
+        cabal v2-test --test-options="--quickcheck-max-size=10000"
+
+        # test a moderate number of moderately sized cases:
+        cabal v2-test --test-options="--quickcheck-tests=1000 --quickcheck-max-size=1000"
