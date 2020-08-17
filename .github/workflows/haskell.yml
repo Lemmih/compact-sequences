@@ -56,3 +56,6 @@ jobs:
 
         # test a moderate number of moderately sized cases:
         cabal v2-test --test-options="--quickcheck-tests=1000 --quickcheck-max-size=1000"
+
+    - name: Check documentation syntax
+      run: cabal v2-haddock
